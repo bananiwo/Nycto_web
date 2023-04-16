@@ -1,0 +1,25 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="comments content">
+        <h2>All comments</h2>
+
+        <% if (comments.length > 0) { %>
+            <% comments.forEach(comment => { %>
+                <a class="single" href="/comments/<%= comment._id %>">
+                    <h3 class="title"><%= comment.title %></h3>
+                    <p class="snippet"><%= comment.snippet %></p>
+                </a>
+            <% }) %>
+        <% } else { %>
+            <p>There are no comments to display</p>
+        <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
