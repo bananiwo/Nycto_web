@@ -1,0 +1,23 @@
+// this file is used only to sandbox requests, not needed for the program to run
+
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Michal",
+  "password": "Haslo"
+}
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "name": "Michal",
+  "password": "Haslo"
+}
