@@ -1,0 +1,20 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="create-comment content">
+        <form action="/users" method="POST">
+            <label for="title">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="snippet">Password:</label>
+            <input type="text" id="password" name="password" required>
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
