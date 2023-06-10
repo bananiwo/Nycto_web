@@ -8,8 +8,8 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "name": "Michal",
-  "password": "Haslo"
+  "username": "Andrzej",
+  "password": "Andrzejczak"
 }
 
 ###
@@ -18,6 +18,6 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "name": "Michal",
-  "password": "Haslo"
+  "username": "Andrzej",
+  "password": "Andrzejczak"
 }
