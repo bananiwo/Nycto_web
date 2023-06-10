@@ -2,18 +2,32 @@ const express = require('express')
 const User = require('../models/user');
 const router = express.Router();
 const bcrypt = require('bcrypt')
+const Comment = require("../models/comment");
 
 router.use(express.json())
 
-router.get('/', (req, res) => {
+
+// router.get('/', (req, res) => {
+//     User.find()
+//         .then((result) => {
+//             res.render('users', {title: 'All users', users: result})
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//         })
+// });
+
+
+router.get('/admin', (req, res) => {
     User.find()
         .then((result) => {
-            res.send(result)
+            res.render('admin', {title: 'Admin panel', users: result})
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
         })
-})
+});
+
 
 router.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 means automatically add 10-digit salt
@@ -28,21 +42,25 @@ router.post('/', async (req, res) => {
         })
 })
 
-router.post('/login', async (req, res) => {
-        const user = await User.findOne({username: req.body.username})
-        if (user == null) {
-            return res.status(500).send('Cannot find user')
-        }
-        try {
-            if (await bcrypt.compare(req.body.password, user.password)) {
-                res.send("Logged in")
-            } else {
-                res.send("Wrong password")
-            }
-        } catch {
-            res.status(500).send()
-        }
-    }
-)
+// router.post('/login', async (req, res) => {
+//         const user = await User.findOne({username: req.body.username})
+//         if (user == null) {
+//             return res.status(500).send('Cannot find user')
+//         }
+//         try {
+//             if (await bcrypt.compare(req.body.password, user.password)) {
+//                 res.send("Logged in")
+//             } else {
+//                 res.send("Wrong password")
+//             }
+//         } catch {
+//             res.status(500).send()
+//         }
+//     }
+// )
+
+router.get('/login', (req, res) => {
+    res.render('login', {title: 'Login'});
+});
 
 module.exports = router
