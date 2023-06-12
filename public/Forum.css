@@ -1,5 +1,11 @@
+/*.section0 {*/
+/*    background-image: url("images/zabki.png");*/
+/*    background-position: 50% 50%;*/
+/*    min-height: 200px;*/
+/*}*/
+
 .section1 {
-    background-image: url("/images/header.png");
+    background-image: url("images/header.png");
     background-position: 50% 50%;
     min-height: 705px;
 }
@@ -38,7 +44,7 @@
 
 
 .section2-img1{
-    background-image: url("/images/pasek.png");
+    background-image: url("images/pasek.png");
     display: block;
     margin-top: 80px;
     margin-left: auto;
