@@ -5,6 +5,7 @@ const app = express();
 
 const commentRoutes = require('./routes/commentRoutes');
 const userRoutes = require('./routes/userRoutes');
+const Comment = require("./models/comment");
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://nycto:pass1234@nycto.tbhpcyi.mongodb.net/nycto?retryWrites=true&w=majority';
@@ -25,9 +26,15 @@ app.use(morgan('dev'));
 
 // routes
 //jak express trafi na dany URL, to nie wykonuje dalszego kodu przy GET, przy USE wykonuje jesli damy next()
+// app.get('/', (req, res) => {
+//     res.redirect('/comments');
+// });
+
 app.get('/', (req, res) => {
-    res.redirect('/comments');
+    res.render('mainpage', {title: 'Main page'});
 });
+
+
 
 app.get('/about', (req, res) => {
     res.render('about', {title: 'About'});

@@ -1,0 +1,85 @@
+.section1 {
+    background-image: url("/images/header.png");
+    background-position: 50% 50%;
+    min-height: 705px;
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.v-c-to-left{
+    display: flex;
+    justify-content: left;
+}
+
+.v-c-to-right{
+    display: flex;
+    justify-content: right!important;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 17px;
+}
+
+.nav-link:hover{
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.main-title{
+    margin-top: 8%;
+    color: #fff;
+}
+
+
+.section2-img1{
+    background-image: url("/images/pasek.png");
+    display: block;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 835px;
+    height: 50px;
+}
+
+.section2-img1-text, .section2-text {
+    padding-top: 15px;
+    font-size: 20px;
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+.section2-text1{
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+
+.footer-title{
+    display:block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 1%;
+}
+
+.footer-text{
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 1% 0 1%;
+}
+
+footer{
+    margin: 5% 0 7%;
+}
+
+.footer-col-first,
+.footer-col-third{
+    padding-top: 5%;
+}
