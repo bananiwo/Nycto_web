@@ -16,7 +16,7 @@ mongoose.connect(dbURI)
 // register view engine
 app.set('view engine', 'ejs');
 
-// middleware and static files (eg. css, images)
+// middleware and static files (eg. css, image
 // make files from dir 'public' available to frontend
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // do postowania komentarzy
@@ -33,7 +33,6 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => {
     res.render('mainpage', {title: 'Main page'});
 });
-
 
 
 app.get('/about', (req, res) => {
