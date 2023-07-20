@@ -16,7 +16,7 @@ router.get('/admin', (req, res) => {
         })
 });
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 means automatically add 10-digit salt
     const user = new User({username: req.body.username, password: hashedPassword });
     user.save()
@@ -30,6 +30,10 @@ router.post('/', async (req, res) => {
 
 router.get('/register',  (req, res) => {
     res.render('register', {title: 'Registration'})
+})
+
+router.get('/login',  (req, res) => {
+    res.render('login', {title: 'Login'})
 })
 
 //login works only sandbox mode - from request.rest
