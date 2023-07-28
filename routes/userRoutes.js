@@ -1,11 +1,34 @@
-// const express = require('express')
-// const User = require('../models/user');
-// const router = express.Router();
+const express = require('express')
+const User = require('../models/user');
+const router = express.Router();
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 // const bcrypt = require('bcrypt')
 //
 //
 // router.use(express.json())
 //
+
+const strategy = new LocalStrategy(User.authenticate())
+passport.use(strategy);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+router.use(passport.initialize(() => {}));
+router.use(passport.session(() => {}));
+router.post('/register', function (req, res) {
+    User.register(
+        new User({
+            // email: req.body.email,
+            username: req.body.username
+        }), req.body.password, function (err, msg) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send({ message: "Successful" });
+            }
+        }
+    )
+})
 // router.get('/admin', (req, res) => {
 //     User.find()
 //         .then((result) => {
@@ -16,21 +39,10 @@
 //         })
 // });
 //
-// router.post('/register', async (req, res) => {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 means automatically add 10-digit salt
-//     const user = new User({username: req.body.username, password: hashedPassword });
-//     user.save()
-//         .then((result) => {
-//             res.redirect('/users/admin')
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         })
-// })
 //
-// router.get('/register',  (req, res) => {
-//     res.render('register', {title: 'Registration'})
-// })
+router.get('/register',  (req, res) => {
+    res.render('register', {title: 'Registration'})
+})
 //
 // router.get('/login',  (req, res) => {
 //     res.render('login', {title: 'Login'})
@@ -54,4 +66,4 @@
 //     }
 // )
 //
-// module.exports = router
+module.exports = router

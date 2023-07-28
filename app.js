@@ -1,17 +1,14 @@
 // zgodnie z poradnikiem https://javascript.plainenglish.io/session-authentication-with-node-js-express-passport-and-mongodb-ffd1eea4521c
 const express = require('express');
 const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const morgan = require('morgan'); // package that creates logs
 const mongoose = require('mongoose');
 const app = express();
-const User = require('./models/user')
 const MongoStore = require('connect-mongo');
 const db = mongoose.connection;
 
 const commentRoutes = require('./routes/commentRoutes');
-// const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://nycto:pass1234@nycto.tbhpcyi.mongodb.net/nycto?retryWrites=true&w=majority';
@@ -37,40 +34,6 @@ app.use(session({
     saveUninitialized: true,
     store: new MongoStore({ mongoUrl: db.client.s.url })
 }));
-/*
-  Setup the local passport strategy, add the serialize and
-  deserialize functions that only saves the ID from the user
-  by default.
-*/
-const strategy = new LocalStrategy(User.authenticate())
-passport.use(strategy);
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-app.use(passport.initialize());
-app.use(passport.session());
-
-/*
-  Beyond this point is all system specific routes.
-  All routes are here for simplicity of understanding the tutorial
-  /register -- Look closer at the package https://www.npmjs.com/package/passport-local-mongoose
-  for understanding why we don't try to encrypt the password within our application
-*/
-app.post('/register', function (req, res) {
-    User.register(
-        new User({
-            // email: req.body.email,
-            username: req.body.username
-        }), req.body.password, function (err, msg) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send({ message: "Successful" });
-            }
-        }
-    )
-})
-
-
 
 // log requests to console
 app.use(morgan('dev'));
@@ -92,7 +55,7 @@ app.get('/about', (req, res) => {
 
 // redirect to route files
 app.use('/comments', commentRoutes);
-// app.use('/users', userRoutes);
+app.use('/users', userRoutes);
 
 // 404 page - dziala dla kazdego przeslanego URL, musi byc na dole kodu, zeby nie wykonalo sie zawsze, tylko gdy poprzednie gety nie przejda
 app.use((req, res) => {
