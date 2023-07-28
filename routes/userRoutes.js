@@ -15,6 +15,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 router.use(passport.initialize(() => {}));
 router.use(passport.session(() => {}));
+
+router.get('/register',  (req, res) => {
+    res.render('register', {title: 'Registration'})
+})
+
 router.post('/register', function (req, res) {
     User.register(
         new User({
@@ -29,41 +34,36 @@ router.post('/register', function (req, res) {
         }
     )
 })
-// router.get('/admin', (req, res) => {
-//     User.find()
-//         .then((result) => {
-//             res.render('admin', {title: 'Admin panel', users: result})
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         })
-// });
-//
-//
-router.get('/register',  (req, res) => {
-    res.render('register', {title: 'Registration'})
+
+router.get('/login',  (req, res) => {
+    res.render('login', {title: 'Login'})
 })
-//
-// router.get('/login',  (req, res) => {
-//     res.render('login', {title: 'Login'})
-// })
-//
-// //login works only sandbox mode - from request.rest
-// router.post('/login', async (req, res) => {
-//         const user = await User.findOne({username: req.body.username})
-//         if (user == null) {
-//             return res.status(500).send('Cannot find user')
-//         }
-//         try {
-//             if (await bcrypt.compare(req.body.password, user.password)) {
-//                 res.send("Logged in")
-//             } else {
-//                 res.send("Wrong password")
-//             }
-//         } catch {
-//             res.status(500).send()
-//         }
-//     }
-// )
-//
+
+router.post('/login', passport.authenticate('local', {
+    failureRedirect: '/login-failure',
+    successRedirect: '/login-success'
+}), (err, req, res, next) => {
+    if (err) next(err);
+});
+
+router.get('/login-failure', (req, res, next) => {
+    console.log(req.session);
+    res.send('Login Attempt Failed.');
+});
+
+router.get('/login-success', (req, res, next) => {
+    console.log(req.session);
+    res.send('Login Attempt was successful.');
+});
+
+router.get('/admin', (req, res) => {
+    User.find()
+        .then((result) => {
+            res.render('admin', {title: 'Admin panel', users: result})
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+});
+
 module.exports = router
