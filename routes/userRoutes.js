@@ -3,11 +3,6 @@ const User = require('../models/user');
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-// const bcrypt = require('bcrypt')
-//
-//
-// router.use(express.json())
-//
 
 const strategy = new LocalStrategy(User.authenticate())
 passport.use(strategy);
@@ -65,5 +60,21 @@ router.get('/admin', (req, res) => {
             console.log(err);
         })
 });
+
+/*
+  Protected Route -- Look in the account controller for
+  how we ensure a user is logged in before proceeding.
+  We call 'isAuthenticated' to check if the request is
+  authenticated or not.
+*/
+router.get('/profile', function(req, res) {
+    console.log(req.session)
+    if (req.isAuthenticated()) {
+        // res.json({ message: 'You made it to the secured profie' })
+        res.render('create', {title: 'Create a new comment'});
+    } else {
+        res.json({ message: 'You are not authenticated' })
+    }
+})
 
 module.exports = router
