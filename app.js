@@ -1,3 +1,4 @@
+// zgodnie z poradnikiem https://javascript.plainenglish.io/session-authentication-with-node-js-express-passport-and-mongodb-ffd1eea4521c
 const express = require('express');
 const morgan = require('morgan'); // package that creates logs
 const mongoose = require('mongoose');
