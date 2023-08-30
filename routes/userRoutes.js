@@ -3,6 +3,8 @@ const User = require('../models/user');
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const userController = require('../user-controller');
+const validationRule =  require('../validation-rule');
 
 const strategy = new LocalStrategy(User.authenticate())
 passport.use(strategy);
@@ -11,24 +13,8 @@ passport.deserializeUser(User.deserializeUser());
 router.use(passport.initialize(() => {}));
 router.use(passport.session(() => {}));
 
-router.get('/register',  (req, res) => {
-    res.render('register', {title: 'Registration'})
-})
-
-router.post('/register', function (req, res) {
-    User.register(
-        new User({
-            // email: req.body.email,
-            username: req.body.username
-        }), req.body.password, function (err, msg) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send({ message: "Successful" });
-            }
-        }
-    )
-})
+router.get('/register', userController.userForm);
+router.post('/validate-form',validationRule.form, userController.validateForm);
 
 router.get('/login',  (req, res) => {
     res.render('login', {title: 'Login'})
@@ -70,8 +56,8 @@ router.get('/admin', (req, res) => {
 router.get('/profile', function(req, res) {
     console.log(req.session)
     if (req.isAuthenticated()) {
-        // res.json({ message: 'You made it to the secured profie' })
-        res.render('create', {title: 'Create a new comment'});
+        res.json({ message: 'You made it to the secured profie' })
+        // res.render('create', {title: 'Create a new comment'});
     } else {
         res.json({ message: 'You are not authenticated' })
     }

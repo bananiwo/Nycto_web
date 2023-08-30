@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Zaloguj sie</title>
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="/register.css" media="screen">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
@@ -21,24 +21,24 @@
     <section class="section5">
         <%- include('./partials/nav.ejs') %>
 
-        <div class="create-comment content text-center">
-            <!--- Madzia pls daj żeby był ładny tekst uwu --->
-            REJESTRACJA
-            <form action="/users/register" method="POST" class="labels">
-                <div class="labels">
-                    <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="labels">
-                    <h5 class="label2"><label for="snippet">Hasło:</label></h5>
-                    <input type="text" id="password" name="password" required>
-                </div>
-                <div class="labels">
-                    <h6 class="label3"><button class="sub_button">Zatwierdź</button></h6>
-                </div>
+    <div class="create-comment content text-center">
+        <form action="../users/validate-form" method="POST">
+            <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
+            <input type="text" placeholder="Nazwa użytkownika" name="userName" value="<%=(typeof inputData!='undefined')? inputData.userName:''%>">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.userName!='undefined' )? errors.userName.msg:''%></p>
+            <h5 class="label2"><label for="snippet">Email:</label></h5>
+            <input type="email" placeholder="Adres email" name="emailAddress" value="<%=(typeof inputData!='undefined')? inputData.emailAddress:''%>">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.emailAddress!='undefined' )? errors.emailAddress.msg:''%></p>
+            <h5 class="label2"><label for="snippet">Hasło:</label></h5>
+            <input type="password" placeholder="Hasło" name="password">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.password!='undefined' )? errors.password.msg:''%></p>
+            <h5 class="label2"><label for="snippet">Powtórz hasło:</label></h5>
+            <input type="password" placeholder="Powtórz hasło" name="confirmPassword">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.confirmPassword!='undefined' )? errors.confirmPassword.msg:''%></p>
+            <h6 class="label3"><button class="sub_button" type="submit">Zatwierdź</button></h6>
+        </form>
+    </div>
 
-            </form>
-        </div>
     </section>
 
     <%- include('./partials/footer.ejs') %>
