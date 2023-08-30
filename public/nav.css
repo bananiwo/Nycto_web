@@ -1,0 +1,38 @@
+.section0{
+    position: sticky;
+    top: 0;
+}
+.nav-back {
+    width: 100%;
+    height: 200px;
+    background-image: url("images/zabki.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.v-c-to-left{
+    display: flex;
+    justify-content: left!important;
+}
+
+.v-c-to-right{
+    display: flex;
+    justify-content: right!important;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 17px;
+}
+
+.nav-link:hover{
+    color: #ff0000;
+    cursor: pointer;
+}

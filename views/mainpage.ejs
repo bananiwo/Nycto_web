@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="pl">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Strona główna</title>
+	<link rel="stylesheet" href="/mainpage.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+	<!-- Dodany bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <meta property="og:title" content="Strona główna">
+    <meta property="og:type" content="website">
+</head>
+ <body class="body" data-lang="pl">	
+
+	<!-- <section class="u-align-center u-clearfix header u-section-1" id="carousel_ee3f" data-image-width="1800" data-image-height="2200"> -->
+
+
+	<section class="section1">
+		<%- include('./partials/nav.ejs') %>
+
+		<div class="main-title text-center">
+			<h3>WEJDŹ DO ŚWIATA</h3>
+			<h3>HORRORU JUŻ TERAZ.</h3>
+			<br>
+			<h3>KUP GRĘ NA STEAM.</h3>
+		</div>
+
+		<img class="image1" src="/images/cube1.png" alt="">
+		<img class="image2" src="/images/cube2.png" alt="">
+		<img class="image3" src="/images/cube3.png" alt="">
+
+	</section>
+
+	<section class="section2">
+		<div class="section2-text text-center">
+		  <h3 class="section2-title">O GRZE </h3>
+		  <p>Nycto to nasz pierwszy poważniejszy projekt, gra nad którą do tej pory spędziliśmy najwięcej czasu, potu i łez.
+			  <br>Nycto ma za zadanie wzbudzić w graczu poczucie niepewności i zagubienia.
+			  <br>Nie jest to horror, jednak klimatyczna muzyka i ciemne lokacje wywołują w graczu dreszczyk emocji i niepokoju.
+			  <br>
+			  <br>Nycto zostało stworzone w ramach projektu POWER,
+			  <br>praca nad grą zajęła lekko ponad rok, Nycto było tworzone przez zespół 6 studentów,
+			  <br>w tym: sfx designera, level designera, 3d artystę i trzech programistów
+		  </p>
+		</div>
+	</section>
+	
+	<section class="section3" >
+      <div class="row">
+          <div class="col">
+            <div class="section3-img1">
+              <h4 class="section3-img1-text">Rozwiązuj zagadki</h4>
+            </div>
+          </div>
+          <div class="col">
+            <div class="section3-img2">
+              <h4 class="section3-img2-text">Szukaj ukrytych przejść</h4>
+            </div>
+          </div>
+          <div class="col">
+            <div class="section3-img3">
+              <h4 class="section3-img3-text">Znajdź wyjście z labiryntu</h4>
+            </div>
+          </div>
+      </div>
+	</section>
+	
+	<section class="section4">
+		<div class="section4-text text-center">
+		  <h3 class="section2-title">O NAS</h3>
+		  <p> Jesteśmy studentami Politechniki Łódzkiej oraz uczestnikami projektu POWER,
+			  <br>w ramach którego tworzymy grę Nycto.
+			  <br>Poza studiami jesteśmy zwykłymi nerdami lubiącymi grać w gry, dlatego też je tworzymy.
+			  <br>Można dać po zdaniu o każdym jeszcze żeby sb sam napisał ale chyba wyjebane i bez przesady
+		  </p>
+		 </div>
+    </section>
+
+	<%- include('./partials/footer.ejs') %>
+  
+</body>
+</html>

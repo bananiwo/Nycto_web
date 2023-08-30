@@ -1,0 +1,22 @@
+.footer-title{
+    display:block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 1%;
+}
+
+.footer-text{
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 1% 0 1%;
+}
+
+footer{
+    margin: 5% 0 7%;
+}
+
+.footer-col-first,
+.footer-col-third{
+    padding-top: 5%;
+}

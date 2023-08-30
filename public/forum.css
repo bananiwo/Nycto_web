@@ -1,0 +1,63 @@
+.section6 {
+    background-image: url("/images/image3.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    min-height: 750px;
+}
+
+.comments a {
+    background-image: url("/images/com_back.png");
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%, 100%;
+    display: block;
+    margin: 50px 200px;
+    padding: 5px 150px;
+    border-left: 8px solid crimson;
+}
+
+.comments a:hover h3{
+    color: crimson;
+}
+
+/*.comments a h3{*/
+/*    color: black;*/
+/*    font-weight: bold;*/
+/*}*/
+
+.title {
+    color: black;
+    font-size: 20px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.snippet {
+    margin-top: 15px;
+    color: #333333;
+}
+
+/*.comments a p{*/
+/*    margin-top: 20px;*/
+/*    font-size: 16px;*/
+
+/*}*/
+
+.comments h1{
+    background-image: url("/images/add_button.png");
+    background-size: cover;
+    background-position: 50%, 50%;
+    font-size: 24px;
+    color: white;
+    padding:20px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.comments h2, .comments h1 {
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+}
+

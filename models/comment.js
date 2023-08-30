@@ -6,7 +6,7 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
-    snippet: {
+    author: {
         type: String,
         required: true
     },
