@@ -19,10 +19,13 @@
 
 <section class="section6">
     <%- include('./partials/nav.ejs') %>
-    <div class="comments content">
-        <h1 class="label1 text-center">+ Dodaj nowy komentarz:</h1>
-        <h2 class="label1 text-center">Ostatnie komentarze:</h2>
+    <a href="/comments/create" class="nav-link">
+        <h1 class="label1 text-center" href="/comments/create">+ Dodaj nowy komentarz:</h1>
+    </a>
 
+    <h2 class="label2 text-center">Ostatnie komentarze:</h2>
+
+    <div class="comments content">
         <% if (comments.length > 0) { %>
             <% comments.forEach(comment => { %>
                 <a class="single" href="/comments/<%= comment._id %>">
