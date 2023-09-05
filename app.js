@@ -6,6 +6,7 @@ const app = express();
 const commentRoutes = require('./routes/commentRoutes');
 const userRoutes = require('./routes/userRoutes');
 const Comment = require("./models/comment");
+const jwt = require('jsonwebtoken')
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://nycto:pass1234@nycto.tbhpcyi.mongodb.net/nycto?retryWrites=true&w=majority';
@@ -47,3 +48,13 @@ app.use('/users', userRoutes);
 app.use((req, res) => {
     res.status(404).render('404', {title: '404'});
 });
+
+const myFunction = async () => {
+    const token = jwt.sign({ _id: 'abc123' }, 'randomcharacters', { expiresIn: '7 days' })
+    console.log(token)
+
+    const data = jwt.verify(token, 'randomcharacters')
+    console.log(data)
+}
+
+myFunction()

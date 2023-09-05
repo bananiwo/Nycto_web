@@ -1,7 +1,7 @@
 const express = require('express')
 const User = require('../models/user');
 const router = express.Router();
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Comment = require("../models/comment");
 
 router.use(express.json())
@@ -17,15 +17,14 @@ router.get('/admin', (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 means automatically add 10-digit salt
-    const user = new User({username: req.body.username, password: hashedPassword });
-    user.save()
-        .then((result) => {
-            res.redirect('/users/admin')
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    const user = new User(req.body)
+    try {
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.status(201).send({user, token})
+    } catch (e) {
+        res.status(400).send(e)
+    }
 })
 
 router.get('/register',  (req, res) => {
@@ -36,20 +35,13 @@ router.get('/login',  (req, res) => {
     res.render('login', {title: 'Login'})
 })
 
-//login works only sandbox mode - from request.rest
 router.post('/login', async (req, res) => {
-        const user = await User.findOne({username: req.body.username})
-        if (user == null) {
-            return res.status(500).send('Cannot find user')
-        }
         try {
-            if (await bcrypt.compare(req.body.password, user.password)) {
-                res.send("Logged in")
-            } else {
-                res.send("Wrong password")
-            }
-        } catch {
-            res.status(500).send()
+            const user = await User.findByCredentials(req.body.username, req.body.password)
+            const token = await user.generateAuthToken()
+            res.send({ user, token })
+        } catch (e) {
+            res.status(400).send("Cannot log in")
         }
     }
 )
