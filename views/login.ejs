@@ -19,11 +19,15 @@
 
 
     <section class="section5">
+
+        <img class="image1" src="/images/cube1.png" alt="">
+        <img class="image2" src="/images/cube2.png" alt="">
+        <img class="image3" src="/images/cube3.png" alt="">
+        <img class="image4" src="/images/cube2.png" alt="">
+
         <%- include('./partials/nav.ejs') %>
 
         <div class="create-comment content text-center">
-            <!--- Madzia pls daj żeby był ładny tekst uwu --->
-            LOGOWANIE
             <form action="/users/login" method="POST" class="labels">
                 <div class="labels">
                     <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
@@ -34,9 +38,12 @@
                     <input type="text" id="password" name="password" required>
                 </div>
                 <div class="labels">
-                    <h6 class="label3"><button class="sub_button">Zatwierdź</button></h6>
-                    <!--- Madzia popraw zeby byl ladny guzik uwu --->
-                    <a href="/users/register" class="nav-link">Utwórz konto</a>
+                    <h6 class="label3"><button class="sub_button">Zaloguj się</button> </h6>
+
+                    <a href="/users/register" class="nav-link">
+                        <h6 class="label3"><button class="register_button">Utwórz konto</button> </h6>
+                    </a>
+
                 </div>
 
             </form>

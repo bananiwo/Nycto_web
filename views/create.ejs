@@ -1,22 +1,49 @@
-<html lang="en">
-    <%- include('./partials/head.ejs') %>
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="pl">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Create</title>
+    <link rel="stylesheet" href="/create.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <!-- Dodany bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <meta property="og:title" content="Strona główna">
+    <meta property="og:type" content="website">
+</head>
+
 <body>
 
+<section class="section7">
     <%- include('./partials/nav.ejs') %>
 
     <div class="create-comment content">
-        <form action="/comments" method="POST">
-            <label for="title">Comment title:</label>
-            <input type="text" id="title" name="title" required>
-            <label for="snippet">Comment snippet:</label>
-            <input type="text" id="snippet" name="snippet" required>
-            <label for="body">Comment body:</label>
-            <textarea id="body" name="body" required></textarea>
-            <button>Submit</button>
+        <form action="/comments" method="POST" class="labels">
+            <div class="labels">
+                <h4 class="label1"><label for="title">Tytuł komentarza:</label></h4>
+                <input type="text" id="title" name="title" required style="width: 400px;">
+            </div>
+            <div class="labels">
+                <h5 class="label2"><label for="snippet">Podtytuł:</label></h5>
+                <input type="text" id="snippet" name="snippet" required style="width: 400px;">
+            </div>
+            <div class="labels">
+                <h6 class="label2"><label for="body">Treść:</label></h6>
+                <textarea id="body" name="body" required style="width: 600px;"></textarea>
+            </div>
+            <div class="labels">
+                <h6 class="label3"><button class="sub_button">Zatwierdź</button></h6>
+            </div>
         </form>
     </div>
 
+
     <%- include('./partials/footer.ejs') %>
+</section>
+
 
 </body>
 </html>
