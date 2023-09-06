@@ -41,6 +41,17 @@ userSchema.methods.generateAuthToken = async function () {
     return token
 }
 
+// this controls what is sent back when we res.send(user)
+// so that password and tokens are not sent to user (security)
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 userSchema.statics.findByCredentials = async (username, password) => {
     const user = await User.findOne({ username })
     if (!user) {

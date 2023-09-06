@@ -50,11 +50,7 @@ app.use((req, res) => {
 });
 
 const myFunction = async () => {
-    const token = jwt.sign({ _id: 'abc123' }, 'randomcharacters', { expiresIn: '7 days' })
-    console.log(token)
-
-    const data = jwt.verify(token, 'randomcharacters')
-    console.log(data)
+    console.log("Server working")
 }
 
 myFunction()

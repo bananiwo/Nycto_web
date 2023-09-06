@@ -3,10 +3,11 @@ const User = require('../models/user');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const Comment = require("../models/comment");
+const auth = require('../middleware/auth')
 
 router.use(express.json())
 
-router.get('/admin', (req, res) => {
+router.get('/admin', auth, async (req, res) => {
     User.find()
         .then((result) => {
             res.render('admin', {title: 'Admin panel', users: result})
@@ -16,6 +17,10 @@ router.get('/admin', (req, res) => {
         })
 });
 
+router.get('/me', auth, async (req, res) => {
+    res.send(req.user)
+})
+
 router.post('/register', async (req, res) => {
     const user = new User(req.body)
     try {
@@ -24,6 +29,28 @@ router.post('/register', async (req, res) => {
         res.status(201).send({user, token})
     } catch (e) {
         res.status(400).send(e)
+    }
+})
+
+router.post('/logout', auth, async (req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        await req.user.save()
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.post('/logoutAll', auth, async (req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+        res.send()
+    } catch (e) {
+        res.status(500).send()
     }
 })
 
@@ -45,5 +72,14 @@ router.post('/login', async (req, res) => {
         }
     }
 )
+
+router.delete('/me', auth, async (req, res) => {
+    try {
+        await req.user.deleteOne()
+        res.send(req.user)
+    } catch (e) {
+        res.status(500).send()
+    }
+})
 
 module.exports = router
