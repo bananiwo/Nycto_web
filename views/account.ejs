@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="pl">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Moje Konto</title>
+    <link rel="stylesheet" href="/account.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <!-- Dodany bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <meta property="og:title" content="Moje Konto">
+    <meta property="og:type" content="website">
+</head>
+
+<body class="body" data-lang="pl">
+
+
+<section class="section">
+
+    <img class="image1" src="/images/cube1.png" alt="">
+    <img class="image2" src="/images/cube2.png" alt="">
+    <img class="image3" src="/images/cube3.png" alt="">
+    <img class="image4" src="/images/cube2.png" alt="">
+
+    <%- include('./partials/nav_logged.ejs') %>
+
+    <div class="create-comment content text-center">
+        <form action="/users/account" method="POST" class="labels">
+            <div class="labels">
+                <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
+            </div>
+<!--            <div class="labels">-->
+<!--                <h5 class="label2"><label for="snippet">Hasło:</label></h5>-->
+<!--            </div>-->
+            <div class="labels">
+                <h6 class="label3"><button class="logout_button">Wyloguj się</button> </h6>
+                <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>
+
+<!--                <a href="/users/register" class="nav-link">-->
+<!--                    <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>-->
+<!--                </a>-->
+
+            </div>
+
+        </form>
+    </div>
+</section>
+
+
+<%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
