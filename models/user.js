@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema(
     }
 )
 
+userSchema.virtual('comments', {
+    ref: 'Comment',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, 'secretstring')

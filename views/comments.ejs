@@ -30,7 +30,7 @@
             <% comments.forEach(comment => { %>
                 <a class="single" href="/comments/<%= comment._id %>">
                     <h3 class="title"><%= comment.title %></h3>
-                    <p class="snippet"><%= comment.snippet %></p>
+                    <p class="snippet"><%= comment.body %></p>
                 </a>
             <% }) %>
         <% } else { %>
