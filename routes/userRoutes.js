@@ -66,7 +66,7 @@ router.post('/login', async (req, res) => {
         try {
             const user = await User.findByCredentials(req.body.username, req.body.password)
             const token = await user.generateAuthToken()
-            res.send({ user, token })
+            res.render('account', { user: user, token: token })
         } catch (e) {
             res.status(400).send("Cannot log in")
         }
