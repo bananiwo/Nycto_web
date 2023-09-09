@@ -48,7 +48,8 @@ router.post('/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
         await req.user.save()
-        res.send()
+        // res.send()
+        res.redirect('/mainpage')
     } catch (e) {
         res.status(500).send()
     }
@@ -66,9 +67,9 @@ router.post('/login', async (req, res) => {
         try {
             const user = await User.findByCredentials(req.body.username, req.body.password)
             const token = await user.generateAuthToken()
-            // res.render('account', { user, token })
+            res.render('account', { user, token })
             // res.redirect('/me')
-            res.send({ user, token })
+            // res.send({ user, token })
         } catch (e) {
             res.status(400).send("Cannot log in")
         }

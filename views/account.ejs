@@ -28,7 +28,7 @@
     <%- include('./partials/nav_logged.ejs') %>
 
     <div class="create-comment content text-center">
-        <form action="/users/account" method="POST" class="labels">
+        <form action="/users/logout" method="POST" class="labels">
             <div class="labels">
                 <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
                 <p><%= user.username %></p>
@@ -38,9 +38,12 @@
 <!--            </div>-->
             <div class="labels">
                 <h6 class="label3"><button class="logout_button">Wyloguj się</button> </h6>
-                <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>
 
-<!--                <a href="/users/register" class="nav-link">-->
+<!--                <form action=/users/logoutAll" method="POST" class="labels">-->
+<!--                    <h6 class="label3"><button class="deleteAll_button">Wyloguj ze wszystkich</button> </h6>-->
+<!--                </form>-->
+
+<!--                <form action=/users/me" method="DELETE" class="labels">-->
 <!--                    <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>-->
 <!--                </a>-->
 
