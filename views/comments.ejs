@@ -28,7 +28,7 @@
     <div class="comments content">
         <% if (comments.length > 0) { %>
             <% comments.forEach(comment => { %>
-                <a class="single" href="/comments/<%= comment._id %>">
+                <a class="single" href="/comments/<%= comment._id %>" style="text-decoration: none">
                     <p class="owner"> Autor: <%= comment.owner.username %></p>
                     <h3 class="title"><%= comment.title %></h3>
                     <p class="snippet2"><%= comment.body %></p>
