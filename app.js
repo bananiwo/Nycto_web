@@ -7,6 +7,8 @@ const commentRoutes = require('./routes/commentRoutes');
 const userRoutes = require('./routes/userRoutes');
 const Comment = require("./models/comment");
 const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser')
+const session = require('express-session');
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://nycto:pass1234@nycto.tbhpcyi.mongodb.net/nycto?retryWrites=true&w=majority';
@@ -16,6 +18,14 @@ mongoose.connect(dbURI)
 
 // register view engine
 app.set('view engine', 'ejs');
+app.use(cookieParser())
+app.use(
+    session({
+        secret: 'secretkey', // Change this to a strong, unique secret
+        resave: false,
+        saveUninitialized: false,
+    })
+)
 
 // middleware and static files (eg. css, image
 // make files from dir 'public' available to frontend

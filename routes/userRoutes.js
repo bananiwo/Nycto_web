@@ -18,7 +18,12 @@ router.get('/admin', auth, async (req, res) => {
 });
 
 router.get('/me', auth, async (req, res) => {
-    res.send(req.user)
+    try {
+        const user = req.session.user
+        res.render('account', {title: 'Account', user})
+    } catch (e) {
+        res.status(400).send(e)
+    }
 })
 
 router.post('/register', async (req, res) => {
@@ -26,7 +31,10 @@ router.post('/register', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.status(201).send({user, token})
+        req.session.user = user
+        res.cookie('token', token)
+        res.redirect('/users/me')
+        // res.status(201).send({user, token})
     } catch (e) {
         res.status(400).send(e)
     }
@@ -38,7 +46,8 @@ router.post('/logout', auth, async (req, res) => {
             return token.token !== req.token
         })
         await req.user.save()
-        res.send()
+        res.clearCookie('token')
+        res.redirect('/users/login')
     } catch (e) {
         res.status(500).send()
     }
@@ -49,6 +58,7 @@ router.post('/logoutAll', auth, async (req, res) => {
         req.user.tokens = []
         await req.user.save()
         // res.send()
+        res.clearCookie('token')
         res.redirect('/mainpage')
     } catch (e) {
         res.status(500).send()
@@ -67,9 +77,9 @@ router.post('/login', async (req, res) => {
         try {
             const user = await User.findByCredentials(req.body.username, req.body.password)
             const token = await user.generateAuthToken()
-            res.render('account', { user, token })
-            // res.redirect('/me')
-            // res.send({ user, token })
+            req.session.user = user
+            res.cookie('token', token)
+            res.redirect('/users/me')
         } catch (e) {
             res.status(400).send("Cannot log in")
         }

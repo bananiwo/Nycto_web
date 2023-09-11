@@ -32,8 +32,8 @@ router.post('/', auth, async (req, res) => {
 
     try {
         await comment.save()
-        res.status(201).send(comment)
-        // res.redirect('/comments/all')
+        // res.status(201).send(comment)
+        res.redirect('/comments/all')
     } catch (e) {
         res.status(400).send()
     }
