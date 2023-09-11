@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Forum</title>
-    <link rel="stylesheet" href="/forum.css" media="screen">
+    <link rel="stylesheet" href="/mycomments.css" media="screen">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
     <!-- Dodany bootstrap -->
@@ -19,11 +19,9 @@
 
 <section class="section6">
     <%- include('./partials/nav.ejs') %>
-    <a href="/comments/create" class="nav-link">
-        <h1 class="label1 text-center" href="/comments/create">+ Dodaj nowy komentarz:</h1>
-    </a>
 
-    <h2 class="label2 text-center">Ostatnie komentarze:</h2>
+
+    <h2 class="label1 text-center">Moje komentarze:</h2>
 
     <div class="comments content">
         <% if (comments.length > 0) { %>
@@ -39,25 +37,9 @@
         <% } %>
     </div>
 
-
-<!--    <h2 class="label2 text-center">Moje komentarze:</h2>-->
-
-<!--    <div class="comments content">-->
-<!--        <% if (comments.length > 0) { %>-->
-<!--            <% comments.forEach(comment => { %>-->
-<!--                <a class="single" href="/comments/myComments<%= comment._id %>">-->
-<!--                    <h3 class="title"><%= comment.title %></h3>-->
-<!--                    <p class="snippet"><%= comment.body %></p>-->
-<!--                </a>-->
-<!--            <% }) %>-->
-<!--        <% } else { %>-->
-<!--            <p>There are no comments to display</p>-->
-<!--        <% } %>-->
-<!--    </div>-->
-
 </section>
 
-    <%- include('./partials/footer.ejs') %>
+<%- include('./partials/footer.ejs') %>
 
 </body>
 </html>

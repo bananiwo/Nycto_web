@@ -32,20 +32,26 @@
             <div class="labels">
                 <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
                 <p><%= user.username %></p>
+                <h4 class="label1"><label for="title">Email użykownika:</label></h4>
+                <p><%= user.email %></p>
             </div>
 <!--            <div class="labels">-->
 <!--                <h5 class="label2"><label for="snippet">Hasło:</label></h5>-->
 <!--            </div>-->
             <div class="labels">
+                <form action=/comments/myComments" method="GET" class="labels">
+                    <h6 class="label3"><button class="my_comments">Moje komentarze</button> </h6>
+                </form>
+
                 <h6 class="label3"><button class="logout_button">Wyloguj się</button> </h6>
 
-<!--                <form action=/users/logoutAll" method="POST" class="labels">-->
-<!--                    <h6 class="label3"><button class="deleteAll_button">Wyloguj ze wszystkich</button> </h6>-->
-<!--                </form>-->
+                <form action=/users/logoutAll" method="POST" class="labels">
+                    <h6 class="label3"><button class="deleteAll_button">Wyloguj ze wszystkich</button> </h6>
+                </form>
 
-<!--                <form action=/users/me" method="DELETE" class="labels">-->
-<!--                    <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>-->
-<!--                </a>-->
+                <form action=/users/me" method="DELETE" class="labels">
+                    <h6 class="label3"><button class="delete_button">Usuń konto</button> </h6>
+                </form>
 
             </div>
 
