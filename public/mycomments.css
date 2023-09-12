@@ -40,4 +40,16 @@
     color: crimson;
 }
 
+.delete-button:hover{
+    color: red;
+}
+
+.delete-button {
+    background-color: black;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
 
