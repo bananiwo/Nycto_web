@@ -29,6 +29,7 @@
                 <a class="single" href="/comments/<%= comment._id %>" style="text-decoration: none">
                     <h3 class="title"><%= comment.title %></h3>
                     <p class="snippet2"><%= comment.body %></p>
+                    <button class="delete-button" data-comment-id="<%= comment._id %>">Delete</button>
                 </a>
             <% }) %>
         <% } else { %>
@@ -39,6 +40,27 @@
 </section>
 
 <%- include('./partials/footer.ejs') %>
+
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        const endpoint = `/comments/${commentId}`;
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (confirm('Are you sure you want to delete this comment?')) {
+
+                    fetch(endpoint, {
+                        method: 'DELETE'
+                    })
+                        .then((response) => response.json())
+                        .then(() => {
+                            alert('Comment deleted')
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+        })
+    </script>
 
 </body>
 </html>

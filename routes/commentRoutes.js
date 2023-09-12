@@ -60,12 +60,14 @@ router.get('/:id', async (req, res) => {
 })
 
 router.delete('/:id', auth, async (req, res) => {
+    console.log("DELETING COMMENT")
     try {
         const comment = await Comment.findOneAndDelete({_id: req.params.id, owner: req.user._id})
         if (!comment) {
             res.status(404).send()
         }
-        res.send(comment)
+        console.log("Comment deleted")
+        res.redirect('/comments/all')
     } catch (e) {
         res.status(500).send()
     }
