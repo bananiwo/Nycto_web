@@ -6,7 +6,7 @@ const Comment = require("../models/comment");
 const auth = require('../middleware/auth')
 
 router.use(express.json())
-
+logged = false
 router.get('/admin', auth, async (req, res) => {
     User.find()
         .then((result) => {
@@ -23,7 +23,7 @@ router.get('/me', auth, async (req, res) => {
         if(!user) {
             res.status(400).send({message: "Please authenticate"})
         }
-        res.render('account', {title: 'Account', user})
+        res.render('account', {title: 'Account', user, logged: req.logged})
         // res.send(user)
     } catch (e) {
         res.status(400).send(e)
@@ -70,11 +70,11 @@ router.post('/logoutAll', auth, async (req, res) => {
 })
 
 router.get('/register',  (req, res) => {
-    res.render('register', {title: 'Registration'})
+    res.render('register', {title: 'Registration', logged: req.logged})
 })
 
 router.get('/login',  (req, res) => {
-    res.render('login', {title: 'Login'})
+    res.render('login', {title: 'Login', logged: req.logged})
 })
 
 router.post('/login', async (req, res) => {

@@ -5,11 +5,11 @@ const router = express.Router();
 const auth = require('../middleware/auth')
 
 router.use(express.json())
-
+logged = false
 router.get('/all', async (req, res) => {
     Comment.find().sort({createdAt: -1})
         .then((result) => {
-            res.render('comments', {title: 'All comments', comments: result})
+            res.render('comments', {title: 'All comments', comments: result, logged: req.logged})
         })
         .catch((err) => {
             console.log(err);
@@ -19,7 +19,7 @@ router.get('/all', async (req, res) => {
 router.get('/myComments', auth, async (req, res) => {
     try{
         const comments = await Comment.find({owner: req.user._id})
-        res.render('myComments', {comments})
+        res.render('myComments', {comments, logged: req.logged})
         // res.send(comments)
     } catch (e) {
         res.status(500).send()
@@ -43,7 +43,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 router.get('/create', auth, (req, res) => {
-    res.render('create', {title: 'Create a new comment'});
+    res.render('create', {title: 'Create a new comment', logged: req.logged});
 });
 
 router.get('/:id', async (req, res) => {
@@ -53,7 +53,7 @@ router.get('/:id', async (req, res) => {
             path: 'owner',
             select: 'username -_id', // Exclude _id field from the user object
         });
-        res.render('details', { comment: commentWithUsername, title: 'Comment Details'})
+        res.render('details', { comment: commentWithUsername, title: 'Comment Details', logged: req.logged})
     } catch (e) {
         res.status(404).render('404', {title: 'Comment not found'});
     }

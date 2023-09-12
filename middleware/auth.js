@@ -12,6 +12,7 @@ const auth = async (req, res, next) => {
         }
         req.token = token
         req.user = user
+        req.logged = true
         next()
 
     } catch (e) {

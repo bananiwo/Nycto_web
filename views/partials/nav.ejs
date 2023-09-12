@@ -23,7 +23,11 @@
 							<a class="nav-link">ROZMIAR CZCIONKI</a>
 						</div>
 						<div class="col v-c-to-right">
-							<a href="/users/login" class="nav-link">ZALOGUJ SIĘ</a>
+							<% if (logged) { %>
+								<a href="/users/me" class="nav-link">MOJE KONTO</a>
+							<% } else { %>
+								<a href="/users/login" class="nav-link">ZALOGUJ SIĘ</a>
+							<% } %>
 						</div>
 					</div>
 				</div>
