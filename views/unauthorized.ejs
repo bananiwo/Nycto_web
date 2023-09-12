@@ -1,0 +1,27 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+        // Function to open a popup window with a message
+        function openPopup() {
+            const message = 'Musisz być zalogowany. Kliknij OK by wrócić';
+            alert(message);
+
+            // Redirect to the previous page after a delay
+            setTimeout(function() {
+                window.history.back();
+            }, 0); // Adjust the delay as needed
+        }
+
+        // Call the openPopup function when the page loads
+        window.onload = openPopup;
+    </script>
+
+</body>
+</html>

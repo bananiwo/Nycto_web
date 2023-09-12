@@ -42,7 +42,7 @@ router.post('/', auth, async (req, res) => {
     }
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', auth, (req, res) => {
     res.render('create', {title: 'Create a new comment'});
 });
 

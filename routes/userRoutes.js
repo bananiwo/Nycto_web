@@ -100,4 +100,8 @@ router.post('/delete', auth, async (req, res) => {
     }
 })
 
+router.get('/unauthorized', async (req, res) => {
+    res.render('unauthorized', {title: 'Unauthorized'})
+})
+
 module.exports = router
