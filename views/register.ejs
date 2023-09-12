@@ -10,7 +10,8 @@
 
     <!-- Dodany bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <!-- validator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.6.0/validator.min.js"></script>
     <meta property="og:title" content="Strona główna">
     <meta property="og:type" content="website">
 </head>
@@ -23,18 +24,18 @@
 
         <div class="create-comment content text-center">
             REJESTRACJA
-            <form action="/users/register" method="POST" class="labels">
+            <form action="/users/register" method="POST" class="labels" onsubmit="return validateForm()">
                 <div class="labels">
                     <h4 class="label1"><label for="title">Nazwa użytkownika:</label></h4>
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="labels">
-                    <h5 class="label2"><label for="snippet">Hasło:</label></h5>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="labels">
                     <h5 class="label2"><label for="snippet">Email:</label></h5>
                     <input type="text" id="email" name="email" required>
+                </div>
+                <div class="labels">
+                    <h5 class="label2"><label for="snippet">Hasło:</label></h5>
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <div class="labels">
                     <h6 class="label3"><button class="sub_button">Zatwierdź</button></h6>
@@ -45,6 +46,26 @@
     </section>
 
     <%- include('./partials/footer.ejs') %>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!validator.isEmail(email)) {
+                alert('Podaj poprawny adres email');
+                return false;
+            }
+            if(password.length < 8) {
+                alert('Hasło musi mieć przynajmniej 8 znaków')
+                return false;
+            }
+
+
+            return true;
+        }
+    </script>
 
 </body>
 </html>

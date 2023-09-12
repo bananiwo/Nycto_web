@@ -19,7 +19,7 @@ router.get('/me', auth, async (req, res) => {
     try {
         const user = req.session.user
         if(!user) {
-            res.status(400).send({message: "Please authenticate"})
+            res.status(400).send({message: "Musisz być zalogowany"})
         }
         res.render('account', {title: 'Account', user, logged: req.logged})
         // res.send(user)
@@ -30,6 +30,17 @@ router.get('/me', auth, async (req, res) => {
 
 router.post('/register', async (req, res) => {
     const user = new User(req.body)
+    const username = req.body.username
+    const email = req.body.email
+    const existingUserUsername = await User.findOne({ username })
+    if(existingUserUsername) {
+        return res.status(400).send('Username jest zajęty');
+    }
+    const existingUserEmail = await User.findOne({ email })
+    if(existingUserEmail) {
+        return res.status(400).send('Email jest zajęty');
+    }
+
     try {
         await user.save()
         const token = await user.generateAuthToken()
