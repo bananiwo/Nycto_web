@@ -7,21 +7,13 @@ const auth = require('../middleware/auth')
 router.use(express.json())
 
 router.get('/all', async (req, res) => {
-    try {
-        const sorted = Comment.find().sort({createdAt: -1})
-        // Find all comments and populate the 'owner' field with the associated user's 'username'
-        const commentsWithUsernames = await sorted.find().populate({
-            path: 'owner',
-            select: 'username -_id', // Exclude _id field from the user object
-        });
-
-        if (!commentsWithUsernames) {
-            return res.status(404).send({error: 'No comments found'});
-        }
-        res.render('comments', {title: 'All comments', comments: commentsWithUsernames})
-    } catch (e) {
-        res.status(500).send({e: 'Internal server error'})
-    }
+    Comment.find().sort({createdAt: -1})
+        .then((result) => {
+            res.render('comments', {title: 'All comments', comments: result})
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 });
 
 router.get('/myComments', auth, async (req, res) => {
@@ -37,7 +29,8 @@ router.get('/myComments', auth, async (req, res) => {
 router.post('/', auth, async (req, res) => {
     const comment = new Comment({
         ...req.body,
-        owner: req.user._id
+        owner: req.user._id,
+        author: req.user.username
     })
 
     try {

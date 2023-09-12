@@ -20,7 +20,11 @@ router.get('/admin', auth, async (req, res) => {
 router.get('/me', auth, async (req, res) => {
     try {
         const user = req.session.user
+        if(!user) {
+            res.status(400).send({message: "Please authenticate"})
+        }
         res.render('account', {title: 'Account', user})
+        // res.send(user)
     } catch (e) {
         res.status(400).send(e)
     }
@@ -59,7 +63,7 @@ router.post('/logoutAll', auth, async (req, res) => {
         await req.user.save()
         // res.send()
         res.clearCookie('token')
-        res.redirect('/mainpage')
+        res.redirect('/')
     } catch (e) {
         res.status(500).send()
     }
@@ -86,10 +90,11 @@ router.post('/login', async (req, res) => {
     }
 )
 
-router.delete('/me', auth, async (req, res) => {
+router.post('/delete', auth, async (req, res) => {
     try {
         await req.user.deleteOne()
-        res.send(req.user)
+        res.redirect('/')
+        // res.send(req.user)
     } catch (e) {
         res.status(500).send()
     }
