@@ -35,12 +35,6 @@ app.use(express.urlencoded({ extended: true })); // do postowania komentarzy
 // log requests to console
 app.use(morgan('dev'));
 
-// routes
-//jak express trafi na dany URL, to nie wykonuje dalszego kodu przy GET, przy USE wykonuje jesli damy next()
-// app.get('/', (req, res) => {
-//     res.redirect('/comments');
-// });
-
 app.get('/', (req, res) => {
     res.render('mainpage', {title: 'Main page'});
 });

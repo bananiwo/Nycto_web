@@ -1,8 +1,6 @@
 const express = require('express')
 const User = require('../models/user');
 const router = express.Router();
-const bcrypt = require('bcryptjs')
-const Comment = require("../models/comment");
 const auth = require('../middleware/auth')
 
 router.use(express.json())
